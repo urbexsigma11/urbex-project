@@ -1,0 +1,7 @@
+[[redirects]]
+  from = "/functions/power"
+  to = "https://twoja-baza-neon.zapier.google.com" # Tu wpiszemy Twój Webhook
+  status = 200
+
+[build]
+  publish = "."
